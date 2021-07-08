@@ -1,26 +1,39 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vcr-cleaner" is now active!');
+	console.log('activated!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('vcr-cleaner.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from vcr-cleaner!');
+	let destroyVcr = vscode.commands.registerCommand('vcr-cleaner.destroyVcr', () => {
+		const activeEditor = vscode.window.activeTextEditor;
+		if(activeEditor){
+			const { text: currentLine } = activeEditor.document.lineAt(activeEditor.selection.active.line);
+
+			const [, vcrContext] = /(?:describe|context).*vcr.*['"](.*)['"]/mg.exec(currentLine) || [];
+			if(vcrContext){
+				const vcrPath = `spec/${vcrContext}.vcr`;
+
+				deleteFile(vcrPath);
+			}
+
+		}
 	});
-
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(destroyVcr);
 }
 
-// this method is called when your extension is deactivated
+
+async function deleteFile(path: string){
+	console.log(`loking for: ${path}`);
+
+	const files = await vscode.workspace.findFiles(path);
+
+	if(files.length === 1){
+		const file = files[0];
+		await vscode.workspace.fs.delete(file);
+
+		vscode.window.showInformationMessage('VCR apagado!');
+	}else{
+		vscode.window.showInformationMessage('VCR não encontrado!');
+	}
+}
+
 export function deactivate() {}

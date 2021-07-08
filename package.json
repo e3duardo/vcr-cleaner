@@ -2,6 +2,11 @@
   "name": "vcr-cleaner",
 	"displayName": "vcr-cleaner",
 	"description": "Clean VCR files for selected contexts",
+	"author": {
+		"name": "Eduardo Santos",
+		"email": "e3duardo@gmail.com",
+		"url": "https://eduardosantos.me"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.57.0"
@@ -10,14 +15,24 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:vcr-cleaner.helloWorld"
+        "onCommand:vcr-cleaner.destroyVcr",
+		"*"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"menus": {
+            "editor/context": [
+                {
+                    "command": "vcr-cleaner.destroyVcr",
+                    "group": "vcr-cleaner@1",
+                    "when": "editorTextFocus && editorLangId == ruby"
+                }
+            ]
+        },
 		"commands": [
 			{
-				"command": "vcr-cleaner.helloWorld",
-				"title": "Hello World"
+				"command": "vcr-cleaner.destroyVcr",
+				"title": "Apagar VCR"
 			}
 		]
 	},

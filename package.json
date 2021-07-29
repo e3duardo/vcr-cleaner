@@ -2,12 +2,15 @@
   "name": "vcr-cleaner",
 	"displayName": "vcr-cleaner",
 	"description": "Clean VCR files for selected contexts",
+	"version": "0.0.5",
 	"author": {
 		"name": "Eduardo Santos",
 		"email": "e3duardo@gmail.com",
 		"url": "https://eduardosantos.me"
 	},
-	"version": "0.0.1",
+	"publisher": "e3duardo",
+	"repository": "https://github.com/e3duardo/vcr-cleaner",
+	"license": "MIT",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
@@ -25,14 +28,22 @@
                 {
                     "command": "vcr-cleaner.destroyVcr",
                     "group": "vcr-cleaner@1",
-                    "when": "editorTextFocus && editorLangId == ruby"
+                    "when": "editorTextFocus && editorLangId == ruby && resourceFilename =~ /.*_spec\\.rb$/"
+                },{
+                    "command": "vcr-cleaner.destroyAllVcr",
+                    "group": "vcr-cleaner@1",
+                    "when": "editorTextFocus && editorLangId == ruby && resourceFilename =~ /.*_spec\\.rb$/"
                 }
             ]
         },
 		"commands": [
 			{
 				"command": "vcr-cleaner.destroyVcr",
-				"title": "Apagar VCR"
+				"title": "Destroy VCR"
+			},
+			{
+				"command": "vcr-cleaner.destroyAllVcr",
+				"title": "Destroy all VCRs"
 			}
 		]
 	},

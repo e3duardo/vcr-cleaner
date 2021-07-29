@@ -4,6 +4,13 @@ All notable changes to the "vcr-cleaner" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## 0.0.3
+
+- Fix VCR file location
+## 0.0.2
+
+- Fix VCR file extension
+
+## 0.0.1
 
 - Initial release

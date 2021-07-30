@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/eduardosantos/MyProjects/vscode-extensions/vcr-cleaner/package.json: Unexpected token } in JSON at position 1074
+  SyntaxError: /home/eduardosantos/MyProjects/vscode-extensions/vcr-cleaner/package.json: Unexpected token , in JSON at position 1744
       at JSON.parse (<anonymous>)
       at /home/eduardosantos/.nvm/versions/node/v14.16.1/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -26,7 +26,15 @@ npm manifest:
     "name": "vcr-cleaner",
   	"displayName": "vcr-cleaner",
   	"description": "Clean VCR files for selected contexts",
-  	"version": "0.0.1",
+  	"version": "0.0.5",
+  	"author": {
+  		"name": "Eduardo Santos",
+  		"email": "e3duardo@gmail.com",
+  		"url": "https://eduardosantos.me"
+  	},
+  	"publisher": "e3duardo",
+  	"repository": "https://github.com/e3duardo/vcr-cleaner",
+  	"license": "MIT",
   	"engines": {
   		"vscode": "^1.57.0"
   	},
@@ -34,35 +42,51 @@ npm manifest:
   		"Other"
   	],
   	"activationEvents": [
-          "onCommand:vcr-cleaner.helloWorld"
+          "onCommand:vcr-cleaner.destroyVcr",
+  		"onCommand:vcr-cleaner.destroyAllVcr",
+  		"*"
   	],
   	"main": "./dist/extension.js",
   	"contributes": {
   		"menus": {
               "editor/context": [
                   {
-                      "command": "bookmarks.toggle",
-                      "group": "bookmarks",
-                      "when": "editorTextFocus && config.bookmarks.showCommandsInContextMenu"
-                  },
-                  {
-                      "command": "bookmarks.jumpToNext",
-                      "group": "bookmarks@1",
-                      "when": "editorTextFocus && config.bookmarks.showCommandsInContextMenu"
-                  },
-                  {
-                      "command": "vcr-cleaner.helloWorld",
-                      "group": "bookmarks@1",
-                      "when": "editorTextFocus && config.bookmarks.showCommandsInContextMenu"
+                      "command": "vcr-cleaner.destroyVcr",
+                      "group": "vcr-cleaner@1",
+                      "when": "editorTextFocus && editorLangId == ruby && resourceFilename =~ /.*_spec\\.rb$/"
+                  },{
+                      "command": "vcr-cleaner.destroyAllVcr",
+                      "group": "vcr-cleaner@1",
+                      "when": "editorTextFocus && editorLangId == ruby && resourceFilename =~ /.*_spec\\.rb$/"
                   }
-              ],
+              ]
           },
   		"commands": [
   			{
-  				"command": "vcr-cleaner.helloWorld",
-  				"title": "Hello World"
+  				"command": "vcr-cleaner.destroyVcr",
+  				"title": "Destroy VCR"
+  			},
+  			{
+  				"command": "vcr-cleaner.destroyAllVcr",
+  				"title": "Destroy all VCRs"
   			}
-  		]
+  		],
+  		"configuration": {
+  			"title": "vcr-cleaner",
+  			"properties": {
+  			  "vcr-cleaner.cassettesDirectory": {
+  				"type": "string",
+  				"default": "spec/vcr/",
+  				"description": "Specifies the folder path containing the vcr cassettes."
+  			  },
+  			  "vcr-cleaner.cassetteExtension": {
+  				"type": "string",
+  				"default": ".yml",
+  				"description": "Specifies extension for a vcr cassette."
+  			  }
+  			}
+  		  }
+  		}
   	},
   	"scripts": {
   		"vscode:prepublish": "yarn run package",

@@ -4,12 +4,17 @@ All notable changes to the "vcr-cleaner" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 0.0.5
+
+- New icon, readme and configurations
+
+## 0.0.4
+
+- Adds the possibility to destroy all vcr cassettes
+
 ## 0.0.3
 
-- Fix VCR file location
-## 0.0.2
-
-- Fix VCR file extension
+- First usable version
 
 ## 0.0.1
 

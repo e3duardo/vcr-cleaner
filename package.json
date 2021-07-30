@@ -19,6 +19,7 @@
 	],
 	"activationEvents": [
         "onCommand:vcr-cleaner.destroyVcr",
+		"onCommand:vcr-cleaner.destroyAllVcr",
 		"*"
 	],
 	"main": "./dist/extension.js",
@@ -45,7 +46,22 @@
 				"command": "vcr-cleaner.destroyAllVcr",
 				"title": "Destroy all VCRs"
 			}
-		]
+		],
+		"configuration": {
+			"title": "vcr-cleaner",
+			"properties": {
+			  "vcr-cleaner.cassettesDirectory": {
+				"type": "string",
+				"default": "spec/vcr/",
+				"description": "Specifies the folder path containing the vcr cassettes."
+			  },
+			  "vcr-cleaner.cassetteExtension": {
+				"type": "string",
+				"default": ".yml",
+				"description": "Specifies extension for a vcr cassette."
+			  }
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",

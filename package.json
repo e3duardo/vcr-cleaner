@@ -1,21 +1,30 @@
 {
   "name": "vcr-cleaner",
 	"displayName": "vcr-cleaner",
-	"description": "Clean VCR files for selected contexts",
-	"version": "0.0.5",
+	"description": "Easy way to destroy VCR cassettes.",
+	"version": "0.0.7",
 	"author": {
 		"name": "Eduardo Santos",
 		"email": "e3duardo@gmail.com",
 		"url": "https://eduardosantos.me"
 	},
 	"publisher": "e3duardo",
-	"repository": "https://github.com/e3duardo/vcr-cleaner",
+	"repository": {
+		"url": "https://github.com/e3duardo/vcr-cleaner"
+	},
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
 	"categories": [
 		"Other"
+	],
+	"icon": "icon.png",
+	"keywords": [
+		"vcr",
+		"cassette",
+		"webmock",
+		"http"
 	],
 	"activationEvents": [
         "onCommand:vcr-cleaner.destroyVcr",

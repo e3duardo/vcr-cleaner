@@ -3,5 +3,5 @@
     <img width="128" height="128" src="https://github.com/e3duardo/vcr-cleaner/raw/main/icon.png" alt="vcr-cleaner">
   </a>
   <br>
-  Easy way to destroy VCR cassette.
+  Easy way to destroy VCR cassettes.
 </p>

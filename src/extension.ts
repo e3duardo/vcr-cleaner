@@ -51,9 +51,9 @@ export function activate(context: vscode.ExtensionContext) {
 			const file = files[0];
 			await vscode.workspace.fs.delete(file);
 			await deleteFolders(file.path);
-			vscode.window.showInformationMessage('VCR destroyed!');
+			vscode.window.showInformationMessage('Cassette destroyed!');
 		}else{
-			vscode.window.showInformationMessage('Not found!');
+			vscode.window.showInformationMessage('Cassette not found!');
 		}
 	}
 
@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const emptyFolder = await isFolderEmpty(folder);
 
 		if(emptyFolder){
-			await vscode.workspace.fs.delete(vscode.Uri.file(folder), {recursive: true, useTrash: false});
+			await vscode.workspace.fs.delete(vscode.Uri.file(folder), { recursive: true, useTrash: false });
 		}
 	}
 
